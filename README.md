@@ -1,4 +1,4 @@
-# gvamp-sic-dd: Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels
+# dd-sic-gvamp: Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels
 
 This repository contains the program code for the paper "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels", which was submitted to the *IEEE Trans. Inf. Theory* on 1 August, 2025. A preprint is [available](https://www.arxiv.org/pdf/2508.01438). 
 
@@ -22,7 +22,7 @@ $$
 with the 
 - baseband signal $X(t) = \sum_\kappa X_\kappa  a(t-\kappa T)$  and symbol period $T$
 - i.i.d. discrete channel inputs $X_\kappa$ from the constellation $\mathcal{A}$ 
-- filter $a(t)$ that combines transmit pulseshaping (DAC) and linear fiber effects
+- filter $a(t)$ that combines transmit pulseshaping (DAC) and dispersive fiber effects
 - filter $g_\mathrm{rx}(t)$ that models the ADC at the receiver
 - bandlimited circularly-symmetric complex Gaussian optical noise $N_1(t)$
 - real white Gaussian electrical noise $N_2(t)$.
@@ -47,22 +47,23 @@ Pulse shape               | Frequency domain root-raised cosine pulse
 Roll-off factor           | $0.01$
 Fiber length              | $4.0  \mathrm{km}$ (C-band, $\lambda=1550 \mathrm{nm}$)
 Symbol rate               | $300  \mathrm{GSym/s}$ 
-Noise                     |  Optical or electrical   
+Noise                     | Optical or electrical   
 
-The optical or electrical noise variance is fixed and we vary the average transmit power $P_\text{tx}$. Hence SNR $= P_\text{tx}$. 
+The optical or electrical noise variance is fixed and we vary the average transmit power $P_\text{tx}$. 
 
-We provide the two examples: 
-- [ex1a_opt.m](ex1a_opt.m) computes rates for SSMF _with_ optical amplification. Here, the optical noise dominates.
-- [ex1a_elec.m](ex1b_elec.m) computes rates for SSMF _without_ optical amplification. Here, the electrical noise of the DD dominates.
+We provide two illustrative examples with detailed output:
+- [ex1a_prePD_noise_iter.m](ex1a_prePD_noise_iter.m) computes rates for SSMF _with_ optical amplification. Here, the post-PD noise (optical noise) dominates. 
+- [ex1b_postPD_noise_iter.m](ex1b_postPD_noise_iter.m) computes rates for SSMF _without_ optical amplification. Here, the post-PD noise (electrical noise) of the DD dominates.
 
+We used [ex1a_prePD_noise.m](ex1a_prePD_noise.m) and [ex1b_postPD_noise.m](ex1b_postPD_noise.m) to compute rates across a range of SNR values, resulting in the plots shown below.
 
 ### Rates vs. SNR
 
-The plots show rates versus SNR for 16-ASK with offset $o$, $L=4\mathrm{km}$ and SIC with $S=4$ levels. A smaller constellation offset $o$ is significantly more power efficient. Setting $o=0.2$ gains $\approx 5.3 \mathrm{dB}$ and $\approx 2.6 \mathrm{dB}$  over legacy PAM modulation ($o=1$)  for optical and  electrical noise, respectively. For optical noise, the gap of 16-ASK-0.2 to the (real) coherent capacity is $\approx 0.4\mathrm{bpcu}$.  
+The plots show rates versus SNR for 16-ASK with offset $o$, $L=4\mathrm{km}$ and SIC with $S=4$ levels. A smaller constellation offset $o$ is significantly more power efficient. Setting $o=0.2$ gains $\approx 5.6 \mathrm{dB}$ and $\approx 2.7 \mathrm{dB}$  over legacy PAM modulation ($o=1$)  for optical and  electrical noise, respectively. For optical noise, the gap of 16-ASK-0.2 to the (real) coherent capacity is $\approx 0.4\mathrm{bpcu}$.  
 
 | Example 1a (Optical Noise) | Example 1b (Electrical Noise)|
 |--------|--------|
-| ![Example 1a](png/optical-16-ASK-o_rates.png) | ![Example 1b](png/electrical-16-ASK-o_rates.png) |
+| ![Example 1a](png/prePD_noise-16-ASK-o_rates.png) | ![Example 1b](png/postPD_noise-16-ASK-o_rates.png) |
 
 
 ### Rates vs. Iterations
@@ -70,9 +71,21 @@ The plots show rates versus SNR for 16-ASK with offset $o$, $L=4\mathrm{km}$ and
 The plots show the achievable rates versus the number of GVAMP iterations for 16 transmitted blocks, each consisting of 2048 16-ASK-0.2 symbols at a fixed SNR. The fiber length is $L = 4\mathrm{km}$ SSMF and the GVAMP receover uses separate detection and decoding (SDD), i.e., $S = 1$. All 16 blocks converge to rates around the mean value, indicated by the black curve.
 
 
-| Example 1a (Optical Noise, $\mathrm{SNR}=23.5 \mathrm{dB}$) | Example 1b (Electrical Noise, $\mathrm{SNR}=10 \mathrm{dB}$)|
+| Example 1a (Optical Noise) | Example 1b (Electrical Noise)|
 |--------|--------|
-| ![Example 1a](png/optical_16-ASK-0.2_SNR=23.5dB_SDD_rate_trace.png) | ![Example 1b](png/electrical_16-ASK-0.2_SNR=10dB_SDD_rate_trace.png) |
+| ![Example 1a](png/prePD_noise-16-ASK-o=0.2_traces.png) | ![Example 1b](png/postPD_noise-16-ASK-o=0.2_traces.png) |
+
+
+### EXIT Charts 
+
+GVAMP convergence can be predicted using extrinsic-variance transfer charts. The figure below shows the variance-based EXIT functions together with the actual GVAMP trajectory (black) for  dominant optical noise at an SNR of 18 dB. The EXIT chart fixed point accurately predicts the achieved GVAMP performance.
+
+<p align="center">
+
+| Example 1a (Optical Noise)|
+|--------|
+|  <img src="png/prePD_noise-16-ASK-o=0.2_EXIT.png" width="450">  |
+</p>
 
 
 > [!NOTE]
@@ -83,8 +96,10 @@ The plots show the achievable rates versus the number of GVAMP iterations for 16
 
 Start MATLAB and execute 
 
-    ex1a_opt.m   
-    ex1b_elec.m
+    ex1a_prePD_noise_iter.m
+    ex1a_prePD_noise.m
+    ex1b_postPD_noise_iter.m
+    ex1b_postPD_noise.m
 
 to choose one of the examples. 
 

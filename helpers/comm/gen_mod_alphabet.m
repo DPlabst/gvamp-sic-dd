@@ -28,6 +28,13 @@ function [S, pX, mod_alph] = gen_mod_alphabet(mod_alph_str)
 
         alpha = sqrt(var(S, 1) / sum(pX .* abs(S).^2)); %Scale power
         S = alpha * S + mod_alph.off; %Symmetric with offset
+
+    elseif strcmp(mod_alph.name, 'QAM') % 
+        m = sqrt(mod_alph.Q);
+        Sb = linspace(- (m), (m), (m));
+        S = Sb + 1j * Sb';
+        S = S(:).';
+        pX = 1 / mod_alph.Q * ones(1, mod_alph.Q); %Generate uniform input distribution
     end
 
     S = 1 / sqrt(sum(pX .* abs(S).^2)) * S; %Normalize constellation to unit power

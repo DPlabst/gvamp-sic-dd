@@ -23,17 +23,17 @@ function plot_gvamp_dbg(VAMP_dbg_mode, EXIT_dbg_mode, n_trig, IqYX_itvec, IqYX, 
         tmp_w2 = nu_W2_up + circshift(nu_W2_up, 1);
         traj_w2 = tmp_w2(1:end - 1); % Remove last index
 
-        loglog(traj_w1(iteroff:end), traj_w2(iteroff:end), 'm.-', 'MarkerSize', 8);
-        loglog(traj_w1(n_trig * 2), traj_w2(n_trig * 2), 'mo-', 'MarkerSize', 10, 'MarkerFaceColor', 'magenta'); %iteration where annealing is turned off
-        loglog(traj_w1(end), traj_w2(end), 'mo-', 'MarkerSize', 10, 'MarkerFaceColor', 'magenta');
+        loglog(traj_w1(iteroff:end), traj_w2(iteroff:end), 'k.-', 'MarkerSize', 8);
+        loglog(traj_w1(n_trig * 2), traj_w2(n_trig * 2), 'ko-', 'MarkerSize', 10, 'MarkerFaceColor', 'black'); %iteration where annealing is turned off
+        loglog(traj_w1(end), traj_w2(end), 'ko-', 'MarkerSize', 10, 'MarkerFaceColor', 'black');
 
-        text(0.9 * traj_w1(n_trig * 2), 1.1 * traj_w2(n_trig * 2), ...
-            strcat("Anneal Rate: ", num2str(IqYX_itvec(n_trig)), " bpcu"), ...
-            'Color', 'magenta', 'FontSize', 6, 'HorizontalAlignment', 'right');
+        text(0.8 * traj_w1(n_trig * 2), 1.3 * traj_w2(n_trig * 2), ...
+            strcat("Rate with annealing: ", num2str(IqYX_itvec(n_trig)), " bpcu"), ...
+            'Color', 'black', 'FontSize', 6, 'HorizontalAlignment', 'right');
 
-        text(0.9 * traj_w1(end), 1.1 * traj_w2(end), ...
+        text(0.85 * traj_w1(end), 1.4 * traj_w2(end), ...
             strcat("Actual Rate: ", num2str(IqYX), " bpcu"), ...
-            'Color', 'magenta', 'FontSize', 6, 'HorizontalAlignment', 'right');
+            'Color', 'black', 'FontSize', 6, 'HorizontalAlignment', 'right');
     end
 
     % Plot rate trajectory

@@ -1,7 +1,5 @@
 function [IqYX, SER, NMSE, IqYX_itvec, NMSE_itvec, ...
-              damp_cost, reqIter, u1best, ...
-              dbg_nu_U1_mc, ...
-              dbg_nu_W1_mc] ...
+              damp_cost, reqIter, u1best, log_APP] ...
     = run_gvamp_asym(nu_init, ...
     p1, nu_W1, r1, nu_U1, ...
     damp_cfg, ...
@@ -60,19 +58,19 @@ nu_W2_prev = [];
 dbg_alpha1_alg = [];
 dbg_alpha1_mc  = [];
 dbg_alpha2_alg = [];
-dbg_alpha2_mc  = [];
-dbg_nu_U1_alg  = [];
-dbg_nu_U1_mc   = [];
-dbg_nu_U2_alg  = [];
-dbg_nu_U2_mc   = [];
-dbg_beta1_alg  = [];
-dbg_beta1_mc   = [];
-dbg_beta2_alg  = [];
-dbg_beta2_mc   = [];
-dbg_nu_W1_alg  = [];
-dbg_nu_W1_mc   = [];
-dbg_nu_W2_alg  = [];
-dbg_nu_W2_mc   = [];
+dbg_alpha2_mc = [];
+dbg_nu_U1_alg = [];
+dbg_nu_U1_mc = [];
+dbg_nu_U2_alg = [];
+dbg_nu_U2_mc = [];
+dbg_beta1_alg = [];
+dbg_beta1_mc = [];
+dbg_beta2_alg = [];
+dbg_beta2_mc = [];
+dbg_nu_W1_alg = [];
+dbg_nu_W1_mc = [];
+dbg_nu_W2_alg = [];
+dbg_nu_W2_mc = [];
 
 NMSE_itvec = inf * ones(1, nitMax);
 SER_itervec = inf * ones(1, nitMax);
@@ -204,7 +202,7 @@ while ~stop
     if i > 1 && k > 1 %Calculate and save some metrics 
         NMSE_itvec(i) = hnd_nmse(u1hat); %NMSE
         SER_itervec(i) = hnd_ser(u1hat.'); %SER
-        [IqYX_tmp] = hnd_sgmi(r1, nu_U1, rGVAMP); %GMI
+        [IqYX_tmp, M_APP_tmp] = hnd_sgmi(r1, nu_U1, rGVAMP); %GMI
         IqYX_itvec(i) = IqYX_tmp;
         IqYX_itvec_k(k) = IqYX_tmp;
     end
@@ -212,7 +210,7 @@ while ~stop
     damp_cost_itvec(i) = hnd_damp_cost(r1, nu_U1, u1hat, alpha1); % Cost for automatic damping
 
     if damp_cfg(4) && ~isempty(u1_prev)
-        u1hat = dampMean(u1hat, u1_prev, damp);  %damp 
+        u1hat = dampMean(u1hat, u1_prev, damp); %damp
     end
 
     % Calculate extrinsics
@@ -280,7 +278,6 @@ while ~stop
     else
         change = inf;
     end
-
     
     if flagConsOutput == 1 %Show progress on console
         if mod(i, 1) == 0 && i ~= 1
@@ -300,10 +297,11 @@ while ~stop
         stop = true;
         u1best = u1hat; %Do not return
         IqYX = IqYX_itvec(i); %rate
+        [~, log_APP] = hnd_sgmi(r1, nu_U1, rGVAMP); %GMI
         SER = SER_itervec(i); %ser
         damp_cost = damp_cost_itvec(i); %damping cost 
         NMSE = NMSE_itvec(i); %nmse 
-        reqIter = find(IqYX_itvec_k >= 0.995 * IqYX, 1); %Number of iterations to reach 99.5% of ultimate rate 
+        reqIter = find(IqYX_itvec_k >= 0.995 * IqYX, 1); %Number of iterations to reach 99.5 % of ultimate rate
 
         % Some plots
         plot_gvamp_dbg(VAMP_dbg_mode, EXIT_dbg_mode, n_trig, IqYX_itvec, IqYX, i, ...

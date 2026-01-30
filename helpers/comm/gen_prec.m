@@ -1,4 +1,4 @@
-function [P, p_vec] = gen_prec(ch, Pcfg, N)
+function [p_vec, P] = gen_prec(ch, Pcfg, N)
 
     p_vec = []; %Initialize
 

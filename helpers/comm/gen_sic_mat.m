@@ -12,9 +12,15 @@ function [idx_data, idx_pil, Adata, Apil, Nprime] = gen_SIC_mat(N_pil, N_span, L
     idx_pil = [idx_pil_edge, idx_pil_sic]; %Stitch together known symbols through pilots and SIC
     idx_data(idx_pil) = []; %Remove indices of known data
 
-    Adata = A(:, idx_data); %Columns corresponding to unknown data
-    Apil = A(:, idx_pil); %Columns corresponding to known data (pilots or known interference)
-    Nprime = size(Adata, 2);
+    if ~isempty(A)
+        Adata = A(:, idx_data); %Columns corresponding to unknown data
+        Apil = A(:, idx_pil); %Columns corresponding to known data (pilots or known interference)
+    else
+        Adata = [];
+        Apil = []; 
+    end 
+
+    Nprime = length(idx_data); %size(Adata, 2);
 
     SE = (L_sequ) / (N_span + L_sequ); %Spectral efficiency
 

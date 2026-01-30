@@ -29,7 +29,7 @@ function [u2d_hat, alpha2_hat, w2_hat, beta2_hat, u2d_hat_part] = lmmse_u2w2( ..
     w2_hat = []; %init
 
     %% Configuration for variance annealing
-    if iter > 1E15 %Annealing OFF; enter here for state evoluation / EXIT charts
+    if iter > 1E15 %Annealing OFF; enter here for state evolution / EXIT charts
         L_D = Lambda_D_col;
         gamma = gam_Bd_over_Bsam; %Colored noise, relative bandwidth: Bd/Bsam = Bd/(Nos*B)
 
@@ -52,7 +52,7 @@ function [u2d_hat, alpha2_hat, w2_hat, beta2_hat, u2d_hat_part] = lmmse_u2w2( ..
             LD_U = L_D;
             nu_N1simW = nu_N1sim;
             LD_W = L_D;
-        else %Mismatch LMMSE denoiser, rely more on denoiser u2hat
+        else %Mismatch LMMSE denoiser, rely more on denoised u2hat
             nu_N1simU = nu_N1sim;
             LD_U = nu_N1sim;
             nu_N1simW = 1/4 * nu_N1sim; %1/4 of noise of U

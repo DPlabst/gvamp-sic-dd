@@ -32,21 +32,21 @@ function plot_exit_dbg(EXIT_dbg_mode, iter_val, k, ...
     % Plot EXIT curves
     if iter_val == 1
         plot(traj_w1(1:2:end), traj_w2(1:2:end), 'b--', 'MarkerSize', 1, 'LineWidth', 1.5);
-        plot(traj_w1(2:2:end), traj_w2(2:2:end), 'g--', 'MarkerSize', 1, 'LineWidth', 1.5);
+        plot(traj_w1(2:2:end), traj_w2(2:2:end), 'r--', 'MarkerSize', 1, 'LineWidth', 1.5);
     else
         plot(nu_W1_vec, nuW2_vs_nuW1, 'b-', 'LineWidth', 1.5);
-        plot(nuW1_vs_nuW2, nu_W2_vec, 'g-', 'LineWidth', 1.0);
+        plot(nuW1_vs_nuW2, nu_W2_vec, 'r-', 'LineWidth', 1.0);
     end
 
     % Final green dot and annotation
-    plot(traj_w1(end), traj_w2(end), 'go', 'MarkerFaceColor', 'green', 'MarkerSize', 10);
+    plot(traj_w1(end), traj_w2(end), 'ro', 'MarkerFaceColor', 'red', 'MarkerSize', 10);
     log_indices = k;
-    text(0.9 * traj_w1(log_indices), 1.3 * traj_w2(log_indices), ...
-        strcat("Prediced rate: ", string(rateEXIT_vec(log_indices)), " bpcu"), ...
-        'FontSize', 6, 'HorizontalAlignment', 'right')
+    text(1.2 * traj_w1(log_indices), 2 * traj_w2(log_indices), ...
+        strcat("Predicted rate: ", string(rateEXIT_vec(log_indices)), " bpcu"), ...
+        'FontSize', 6, 'Color', 'red', 'HorizontalAlignment', 'right')
 
     % Axis scaling
-    xlims = [min(0.25 * traj_w1(3:end - 1)), max(4 * traj_w1(2:end))];
+    xlims = [min(0.15 * traj_w1(3:end - 1)), max(traj_w1(2:end))];
     ylims = [min(0.25 * traj_w1(3:end - 1)), max(4 * traj_w2(2:end))];
 
     xlim(xlims); ylim(ylims);
@@ -54,9 +54,9 @@ function plot_exit_dbg(EXIT_dbg_mode, iter_val, k, ...
     set(gca, 'yscale', 'log');
 
     % Labels and title
-    title(strcat("Predicted Rate  ", num2str(rateEXIT_end), " bpcu"), 'Interpreter', 'latex');
+    title("Extrinsic Variance Transfer Chart");
     grid on;
-    xlabel('$\nu_{W1}$', 'Interpreter', 'latex')
-    ylabel('$\nu_{W2}$', 'Interpreter', 'latex')
+    xlabel('$\nu_{W_1}$', 'Interpreter', 'latex')
+    ylabel('$\nu_{W_2}$', 'Interpreter', 'latex')
 
 end

@@ -1,4 +1,4 @@
-function [MI] = comm_calc_rate(opt_var, r1, nu_U1, u_ind, pX, data_ind, ind_sic, S_SIC, hnd_denoise_u1, rGVAMP)
+function [MI, log_b_x1_norm] = comm_calc_rate(opt_var, r1, nu_U1, u_ind, pX, data_ind, ind_sic, S_SIC, hnd_denoise_u1, rGVAMP)
 
     % Optimized variance
     nu_U1 = max(1E-15, nu_U1 + opt_var); %Lower bound variance
