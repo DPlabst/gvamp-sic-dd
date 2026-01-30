@@ -13,7 +13,7 @@ The corresponding BibTeX entry is: [cite.bib](cite.bib).
 
 ## Fiber-Channel with Direct Detection 
 
-We consider short-reach optical communication with a direct detector (DD) at the receiver, i.e., a single photodiode that performs the optical-to-electrical conversion[^1][^2]. The standard single-mode fiber (SSMF) linking the transmitter and receiver operates in the C-band, where chromatic dispersion induces intersymbol interference (ISI). The model considers both optical noise arising from optical amplification and thermal noise introduced during photodetection: 
+We consider short-reach optical communication with a direct detector (DD) at the receiver, i.e., a single photodiode (PD) that performs the optical-to-electrical conversion[^1][^2]. The standard single-mode fiber (SSMF) linking the transmitter and receiver operates in the C-band, where chromatic dispersion induces intersymbol interference (ISI). The model considers both optical noise arising from optical amplification and thermal noise introduced during photodetection: 
 
 $$
 Y(t) =  g_\mathrm{rx}(t) * \left(\left\lvert X(t) + N_1(t)\right\rvert^2 + N_2(t) \right)
@@ -52,7 +52,7 @@ Noise                     | Optical or electrical
 The optical or electrical noise variance is fixed and we vary the average transmit power $P_\text{tx}$. 
 
 We provide two illustrative examples with detailed output:
-- [ex1a_prePD_noise_iter.m](ex1a_prePD_noise_iter.m) computes rates for SSMF _with_ optical amplification. Here, the post-PD noise (optical noise) dominates. 
+- [ex1a_prePD_noise_iter.m](ex1a_prePD_noise_iter.m) computes rates for SSMF _with_ optical amplification. Here, the pre-PD noise (optical noise) dominates. 
 - [ex1b_postPD_noise_iter.m](ex1b_postPD_noise_iter.m) computes rates for SSMF _without_ optical amplification. Here, the post-PD noise (electrical noise) of the DD dominates.
 
 We used [ex1a_prePD_noise.m](ex1a_prePD_noise.m) and [ex1b_postPD_noise.m](ex1b_postPD_noise.m) to compute rates across a range of SNR values, resulting in the plots shown below.
