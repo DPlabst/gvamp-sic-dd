@@ -76,9 +76,9 @@ The plots show the achievable rates versus the number of GVAMP iterations for 16
 | ![Example 1a](png/prePD_noise-16-ASK-o=0.2_traces.png) | ![Example 1b](png/postPD_noise-16-ASK-o=0.2_traces.png) |
 
 
-### EXIT Charts 
+### Extrinsic Information Transfer Chart (EXIT) Chart
 
-GVAMP convergence can be predicted using extrinsic-variance transfer charts. The figure below shows the variance-based EXIT functions together with the actual GVAMP trajectory (black) for  dominant optical noise at an SNR of 18 dB. The EXIT chart fixed point accurately predicts the achieved GVAMP performance.
+GVAMP convergence can be predicted using extrinsic-variance transfer charts. The figure below shows the variance-based EXIT functions together with the actual GVAMP trajectory (black) for the first SIC stage, dominant optical noise, and an SNR of 24 dB. The EXIT chart fixed point accurately predicts the achieved GVAMP performance.
 
 | Example 1a (Optical Noise)|
 |--------|
