@@ -20,8 +20,8 @@ Y(t) =  g_\mathrm{rx}(t) * \left(\left\lvert X(t) + N_1(t)\right\rvert^2 + N_2(t
 $$
 
 with the 
-- baseband signal $X(t) = \sum_\kappa X_\kappa  a(t-\kappa T)$  and symbol period $T$
-- i.i.d. discrete channel inputs $X_\kappa$ from the constellation $\mathcal{A}$ 
+- baseband signal $X(t) = \sum_k X_k  a(t-k T)$  and symbol period $T$
+- i.i.d. discrete channel inputs $X_k$ from the constellation $\mathcal{A}$ 
 - filter $a(t)$ that combines transmit pulseshaping (DAC) and dispersive fiber effects
 - filter $g_\mathrm{rx}(t)$ that models the ADC at the receiver
 - bandlimited circularly-symmetric complex Gaussian optical noise $N_1(t)$
