@@ -46,7 +46,7 @@ Modulation order          | $M = 16$
 Pulse shape               | Frequency domain root-raised cosine pulse
 Roll-off factor           | $0.01$
 Fiber length              | $4.0  \mathrm{km}$ (C-band, $\lambda=1550 \mathrm{nm}$)
-Symbol rate               | $300  \mathrm{GSym/s}$ 
+Symbol rate               | $300  \mathrm{GBaud/s}$ 
 Noise                     | Optical or electrical   
 
 The optical or electrical noise variance is fixed and we vary the average transmit power $P_\text{tx}$. 
