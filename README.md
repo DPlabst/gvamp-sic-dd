@@ -1,12 +1,12 @@
 # dd-sic-gvamp: Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels
 
-This repository contains the program code for the paper "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels", which was submitted to the *IEEE Trans. Inf. Theory* on 1 August, 2025. A preprint is [available](https://www.arxiv.org/pdf/2508.01438). 
+This repository contains the program code for the paper "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels", which was accepted to the *IEEE Transactions on Information Theory* on March 12, 2026. A preprint is [available](https://arxiv.org/abs/2508.01438). 
 
 ## Citation
 
 The software is provided under the open-source [MIT license](https://opensource.org/licenses/MIT). If you use the software in your academic work, please cite the accompanying document as follows: 
 
-> D. Plabst, M. Akrout, A. Mezghani and G. Kramer, "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels," _arXiv e-prints_, Art. no. arXiv:2508.01438, 2025. doi:10.48550/arXiv.2508.01438. Available: [https://www.arxiv.org/pdf/2508.01438](https://www.arxiv.org/pdf/2508.01438)
+> D. Plabst, M. Akrout, T. Prinz, A. Mezghani and G. Kramer, "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels," _arXiv e-prints_, Art. no. arXiv:2508.01438, 2026. doi:10.48550/arXiv.2508.01438. Available: [https://www.arxiv.org/pdf/2508.01438](https://www.arxiv.org/pdf/2508.01438)
 
 The corresponding BibTeX entry is: [cite.bib](cite.bib).
 
