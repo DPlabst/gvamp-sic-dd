@@ -14,6 +14,8 @@ function varargout = beta1_vec(hnd_denoise_w1, w_star, nu_W1_vec, nu_W1_mism_vec
     for ll = 1:length(nu_W1_vec)
 
         % ------- Adapted from GAMPMATLAB package -------
+        % https://sourceforge.net/projects/gampmatlab/ 
+        % Authors: Sundeep Rangan, Philip Schniter and others
         % Generate w_star = p1 + e (e is the error)
         % with E[e] = 0, var(e) = nu_W1_vec, and Cov[p1,e] = 0 (uncorrelated)
         % Construct e = a * w_star + b * Np2 + c
