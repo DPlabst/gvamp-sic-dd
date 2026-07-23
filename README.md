@@ -1,6 +1,6 @@
 # dd-sic-gvamp: Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels
 
-This repository contains the program code for the paper "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels", which was accepted to the *IEEE Transactions on Information Theory* on March 12, 2026. The paper is available on [IEEEXplore](https://doi.org/10.1109/TIT.2026.3686091). A preprint is available on [arXiv](https://arxiv.org/abs/2508.01438). 
+This repository contains the program code for the paper "Information Rates of Approximate Message Passing for Bandlimited Direct-Detection Channels", which was accepted to the *IEEE Transactions on Information Theory* on March 12, 2026. The paper is available on [IEEE Xplore](https://doi.org/10.1109/TIT.2026.3686091). A preprint is available on [arXiv](https://arxiv.org/abs/2508.01438). 
 
 ## Citation
 
